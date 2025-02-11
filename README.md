@@ -1,29 +1,29 @@
 
-# API de Ejercicios de Listening
+# Listening Practice API
 
-Este proyecto es una API para practicar **listening** en inglés mediante el dictado de frases. El sistema permite a los usuarios escuchar un audio asociado con una oración y, posteriormente, enviar su respuesta escrita. La API evalúa si la respuesta es correcta o incorrecta.
+This project is an API designed to help users practice **listening skills** in English through phrase dictation. The system allows users to listen to an audio file associated with a sentence and then submit their written response. The API evaluates whether the response is correct or incorrect.
 
-## Funcionalidades
+## Features
 
-- **GET /audio**: Obtiene un audio relacionado con una oración.
-- **POST /respuesta**: Envía la respuesta para el dictado (texto escrito) y recibe una evaluación indicando si fue correcta o incorrecta.
+- **GET /audio**: Retrieve an audio file associated with a sentence.
+- **POST /respuesta**: Submit a response for the dictation (written text) and receive feedback indicating if it was correct or not.
 
-### Ejemplo de uso
-1. El usuario realiza un **GET** para obtener un audio.
-2. Escucha el audio y escribe la frase asociada.
-3. Realiza un **POST** para enviar su respuesta y obtiene un resultado sobre si fue correcta o no.
+### Use Case Example
+1. The user performs a **GET** request to retrieve an audio file.
+2. Listens to the audio and writes down the associated phrase.
+3. Submits the written response via a **POST** request and receives feedback on its correctness.
 
 ---
 
-## Requisitos del Proyecto
+## Project Requirements
 
-Asegúrate de tener las siguientes dependencias instaladas:
+Ensure you have the following dependencies installed:
 
-- Python 3.13 o superior
+- Python 3.13 or higher
 - Flask
-- [Cualquier otra dependencia listada en `requirements.txt`]
+- [Any other dependencies listed in `requirements.txt`]
 
-Instala las dependencias con:
+Install the dependencies with:
 
 ```shell script
 pip install -r requirements.txt
@@ -31,42 +31,42 @@ pip install -r requirements.txt
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 /mi_proyecto
 │
-├── app/                    # Carpeta principal de la aplicación
-│   ├── __init__.py         # Inicializa la app Flask
-│   ├── routes/             # Rutas (endpoints) de la API
+├── app/                    # Main application directory
+│   ├── __init__.py         # Initializes the Flask app
+│   ├── routes/             # API routes (endpoints)
 │   │   ├── __init__.py
-│   │   └── frases.py       # Endpoints para manejar frases y audios
-│   ├── services/           # Lógica de negocio (procesamiento de textos y comparación)
+│   │   └── frases.py       # Endpoints for handling phrases and audio
+│   ├── services/           # Business logic (process texts, comparisons)
 │   │   ├── __init__.py
-│   │   └── procesador.py   # Métodos para evaluar respuestas del dictado
-│   ├── models/             # Modelos de datos
+│   │   └── procesador.py   # Methods to evaluate responses to dictation
+│   ├── models/             # Data models
 │   │   ├── __init__.py
-│   │   └── frase.py        # Modelo para manejar las "frases" y sus propiedades
-│   ├── static/             # Archivos estáticos (audios)
-│   │   └── audios/         # Audios utilizados para los ejercicios
-│   └── templates/          # HTML templates (opcional, si usas Jinja2 para front-end)
+│   │   └── frase.py        # Model for handling phrases and their properties
+│   ├── static/             # Static files (audio)
+│   │   └── audios/         # Audio files used for the exercises
+│   └── templates/          # HTML templates (optional, if rendering with Jinja2)
 │       └── index.html
 │
-├── tests/                  # Tests del proyecto
-│   └── test_frases.py      # Tests para endpoints y lógica
+├── tests/                  # Project tests
+│   └── test_frases.py      # Tests for endpoints and logic
 │
-├── requirements.txt        # Dependencias del proyecto
-├── config.py               # Configuración (paths, variables de entorno)
-└── run.py                  # Archivo principal para ejecutar la app
+├── requirements.txt        # Project dependencies
+├── config.py               # Configuration (paths, environment variables)
+└── run.py                  # Main file to run the app
 ```
 
 ---
 
-## Endpoints de la API
+## API Endpoints
 
 ### **GET /audio**
-- **Descripción**: Retorna un audio asociado con una oración.
-- **Respuesta**:
+- **Description**: Returns an audio file associated with a sentence.
+- **Response**:
 ```json
 {
       "audio_url": "https://example.com/audio/audio1.mp3",
@@ -75,43 +75,43 @@ pip install -r requirements.txt
 ```
 
 ### **POST /respuesta**
-- **Descripción**: Envía la respuesta escrita para el dictado y recibe una evaluación.
-- **Cuerpo del request**:
+- **Description**: Submits the written response for the dictation and receives an evaluation.
+- **Request Body**:
 ```json
 {
       "frase_id": 1,
-      "respuesta": "Texto que el usuario escribió"
+      "respuesta": "Text submitted by the user"
   }
 ```
-- **Respuesta**:
+- **Response**:
 ```json
 {
       "correcto": true,
-      "mensaje": "¡Respuesta correcta!"
+      "mensaje": "Correct answer!"
   }
 ```
 
 ---
 
-## Cómo correr el proyecto
+## How to Run the Project
 
-1. Asegúrate de instalar las dependencias:
+1. Make sure to install the dependencies:
 ```shell script
 pip install -r requirements.txt
 ```
 
-2. Ejecuta la aplicación:
+2. Run the application:
 ```shell script
 python run.py
 ```
 
-3. Accede a la API en: `http://127.0.0.1:5000`
+3. Access the API at: `http://127.0.0.1:5000`
 
 ---
 
 ## Tests
 
-Para asegurarte de que todo funciona correctamente, puedes ejecutar los tests incluidos en el proyecto:
+To ensure everything works correctly, run the included project tests:
 
 ```shell script
 python -m unittest discover tests
@@ -119,9 +119,10 @@ python -m unittest discover tests
 
 ---
 
-## Plan futuro
+## Future Plans
 
-- Integrar lógica de IA para evaluar respuestas escritas de forma más flexible.
-- Expandir las funcionalidades de la API con nuevos endpoints.
-- Usar una base de datos para almacenar frases y usuarios.
+- Integrate AI-based logic to evaluate written responses more flexibly.
+- Expand the API with additional endpoints.
+- Use a database for managing phrases and users.
 
+---
