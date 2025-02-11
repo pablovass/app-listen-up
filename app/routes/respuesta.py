@@ -20,3 +20,4 @@ class SubmitRespuesta(Resource):
         if data['respuesta'].lower() == "this is a test":
             return {"correcto": True, "mensaje": "¡Respuesta correcta!"}
         return {"correcto": False, "mensaje": "Respuesta incorrecta."}
+
