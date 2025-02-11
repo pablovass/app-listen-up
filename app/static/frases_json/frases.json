@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "texto": "Practice makes perfect",
+        "audio": "practice_makes_perfect.mp3",
+        "nivel": "básico",
+        "tags": ["motivación", "constancia"]
+    },
+    {
+        "id": 2,
+        "texto": "Listening is the key to understanding",
+        "audio": "listening_is_key.mp3",
+        "nivel": "intermedio",
+        "tags": ["comprensión", "escucha"]
+    },
+    {
+        "id": 3,
+        "texto": "Consistency is the secret to success",
+        "audio": "consistency_is_secret.mp3",
+        "nivel": "avanzado",
+        "tags": ["motivación", "éxito"]
+    }
+]
