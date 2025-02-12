@@ -24,6 +24,12 @@ def get_random_frase():
 @frases_bp.route('/verificar', methods=['POST'])
 def verificar_frase():
     data = request.get_json()
-    texto_usuario = data.get('texto_usuario')
-    resultado = procesador.verificar_frase(texto_usuario)
+    frase_id = data.get('id')
+    texto_usuario = data.get('texto')
+
+    if not frase_id or not texto_usuario:
+        return jsonify({"error": True, "mensaje": "Faltan campos 'id' o 'texto'"}), 400
+
+    resultado = procesador.verificar_frase(frase_id, texto_usuario)
     return jsonify(resultado)
+

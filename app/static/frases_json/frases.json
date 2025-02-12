@@ -1,23 +1,212 @@
 [
     {
         "id": 1,
-        "texto": "Practice makes perfect",
-        "audio": "practice_makes_perfect.mp3",
-        "nivel": "básico",
-        "tags": ["motivación", "constancia"]
+        "texto": "Can you tell me about yourself and your professional background?",
+        "audio": "01.mp3",
+        "nivel": "intermedio",
+        "tags": ["My speech", "introducción"]
     },
     {
         "id": 2,
-        "texto": "Listening is the key to understanding",
-        "audio": "listening_is_key.mp3",
+        "texto": "What were your responsibilities?",
+        "audio": "02.mp3",
         "nivel": "intermedio",
-        "tags": ["comprensión", "escucha"]
+        "tags": ["Responsibilities", "experiencia"]
     },
     {
         "id": 3,
-        "texto": "Consistency is the secret to success",
-        "audio": "consistency_is_secret.mp3",
+        "texto": "What would you say is your greatest strength?",
+        "audio": "03.mp3",
+        "nivel": "intermedio",
+        "tags": ["strength", "habilidades"]
+    },
+    {
+        "id": 4,
+        "texto": "Tell me about a time when you overcame a challenge at work?",
+        "audio": "04.mp3",
         "nivel": "avanzado",
-        "tags": ["motivación", "éxito"]
+        "tags": ["challenge", "experiencia"]
+    },
+    {
+        "id": 5,
+        "texto": "What did you like the least about previous position?",
+        "audio": "05.mp3",
+        "nivel": "intermedio",
+        "tags": ["DontLiked", "experiencia"]
+    },
+    {
+        "id": 6,
+        "texto": "Why are you interested in this position and our company?",
+        "audio": "06.mp3",
+        "nivel": "intermedio",
+        "tags": ["interested", "motivación"]
+    },
+    {
+        "id": 7,
+        "texto": "What do you consider to be your greatest strengths and how would they contribute to our organization?",
+        "audio": "07.mp3",
+        "nivel": "avanzado",
+        "tags": ["challenge", "habilidades"]
+    },
+    {
+        "id": 8,
+        "texto": "Can you describe a difficult work situation you faced and how you handled it?",
+        "audio": "08.mp3",
+        "nivel": "avanzado",
+        "tags": ["difficult", "experiencia"]
+    },
+    {
+        "id": 9,
+        "texto": "Can you tell me about a time where you suffered a setback and had to maintain your enthusiasm?",
+        "audio": "09.mp3",
+        "nivel": "avanzado",
+        "tags": ["difficult", "resiliencia"]
+    },
+    {
+        "id": 10,
+        "texto": "How do you manage your time and prioritize tasks to meet deadlines?",
+        "audio": "10.mp3",
+        "nivel": "intermedio",
+        "tags": ["manage", "organización"]
+    },
+    {
+        "id": 11,
+        "texto": "Can you explain your approach to teamwork and collaboration?",
+        "audio": "11.mp3",
+        "nivel": "intermedio",
+        "tags": ["teamwork", "colaboración"]
+    },
+    {
+        "id": 12,
+        "texto": "Describe a time when you had to resolve a conflict with a coworker or team member. How did you handle it?",
+        "audio": "12.mp3",
+        "nivel": "avanzado",
+        "tags": ["conflicto", "resolución"]
+    },
+    {
+        "id": 13,
+        "texto": "How do you handle stress and pressure in the workplace?",
+        "audio": "13.mp3",
+        "nivel": "intermedio",
+        "tags": ["estrés", "manejo"]
+    },
+    {
+        "id": 14,
+        "texto": "Can you provide an example of a challenging project or goal you achieved? What steps did you take to accomplish it?",
+        "audio": "14.mp3",
+        "nivel": "avanzado",
+        "tags": ["proyecto", "logros"]
+    },
+    {
+        "id": 15,
+        "texto": "What were your responsibilities in your previous position?",
+        "audio": "15.mp3",
+        "nivel": "intermedio",
+        "tags": ["My speech", "responsabilidades"]
+    },
+    {
+        "id": 16,
+        "texto": "What did you like the least about your previous position?",
+        "audio": "16.mp3",
+        "nivel": "intermedio",
+        "tags": ["DontLiked", "experiencia"]
+    },
+    {
+        "id": 17,
+        "texto": "Why have you decided to apply for this position?",
+        "audio": "17.mp3",
+        "nivel": "intermedio",
+        "tags": ["motivación", "interés"]
+    },
+    {
+        "id": 18,
+        "texto": "Can you tell me about your weaknesses?",
+        "audio": "18.mp3",
+        "nivel": "intermedio",
+        "tags": ["debilidades", "autoconocimiento"]
+    },
+    {
+        "id": 19,
+        "texto": "What is your greatest weakness?",
+        "audio": "19.mp3",
+        "nivel": "intermedio",
+        "tags": ["debilidades", "autoconocimiento"]
+    },
+    {
+        "id": 20,
+        "texto": "What are some of the things you think you could bring to the table?",
+        "audio": "20.mp3",
+        "nivel": "intermedio",
+        "tags": ["contribuciones", "habilidades"]
+    },
+    {
+        "id": 21,
+        "texto": "How do you overcome any challenges you come across?",
+        "audio": "21.mp3",
+        "nivel": "avanzado",
+        "tags": ["challenge", "resolución"]
+    },
+    {
+        "id": 22,
+        "texto": "How did you hear about this position?",
+        "audio": "22.mp3",
+        "nivel": "básico",
+        "tags": ["origen", "posición"]
+    },
+    {
+        "id": 23,
+        "texto": "Can you tell me how you heard about this position?",
+        "audio": "23.mp3",
+        "nivel": "básico",
+        "tags": ["origen", "posición"]
+    },
+    {
+        "id": 24,
+        "texto": "What attracted you to our company?",
+        "audio": "24.mp3",
+        "nivel": "intermedio",
+        "tags": ["motivación", "empresa"]
+    },
+    {
+        "id": 25,
+        "texto": "Where do you see yourself in 5 years?",
+        "audio": "25.mp3",
+        "nivel": "intermedio",
+        "tags": ["futuro", "objetivos"]
+    },
+    {
+        "id": 26,
+        "texto": "What are your career goals?",
+        "audio": "26.mp3",
+        "nivel": "intermedio",
+        "tags": ["objetivos", "carrera"]
+    },
+    {
+        "id": 27,
+        "texto": "Why do you want to work here?",
+        "audio": "27.mp3",
+        "nivel": "intermedio",
+        "tags": ["motivación", "empresa"]
+    },
+    {
+        "id": 28,
+        "texto": "Why should we hire you?",
+        "audio": "28.mp3",
+        "nivel": "intermedio",
+        "tags": ["Why not", "habilidades"]
+    },
+    {
+        "id": 29,
+        "texto": "Do you have any questions for us about the company or the role?",
+        "audio": "29.mp3",
+        "nivel": "básico",
+        "tags": ["preguntas", "empresa"]
+    },
+    {
+        "id": 30,
+        "texto": "Do you have any questions for me?",
+        "audio": "30.mp3",
+        "nivel": "básico",
+        "tags": ["preguntas", "final"]
     }
 ]

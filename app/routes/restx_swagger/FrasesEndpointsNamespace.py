@@ -43,3 +43,21 @@ class ListarFrases(Resource):
     def get(self):
         """Listar todas las frases cargadas"""
         return [frase.to_dict() for frase in procesador.frases]
+@ns.route("/verificar")
+class VerificarFrase(Resource):
+    @ns.doc("verificar_frase")
+    @ns.expect(ns.model('VerificarFrase', {
+        'id': fields.Integer(required=True, description='ID de la frase a verificar'),
+        'texto': fields.String(required=True, description='Texto enviado por el usuario')
+    }))
+    def post(self):
+        """Verificar una frase contra el texto original"""
+        data = ns.payload  # Obtiene los datos enviados en la solicitud
+        frase_id = data.get('id')
+        texto_usuario = data.get('texto')
+
+        if not frase_id or not texto_usuario:
+            return {"error": True, "mensaje": "Faltan campos 'id' o 'texto'"}, 400
+
+        resultado = procesador.verificar_frase(frase_id, texto_usuario)
+        return resultado, 200

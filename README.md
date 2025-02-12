@@ -1,128 +1,185 @@
 
 # Listening Practice API
 
-This project is an API designed to help users practice **listening skills** in English through phrase dictation. The system allows users to listen to an audio file associated with a sentence and then submit their written response. The API evaluates whether the response is correct or incorrect.
-
-## Features
-
-- **GET /audio**: Retrieve an audio file associated with a sentence.
-- **POST /respuesta**: Submit a response for the dictation (written text) and receive feedback indicating if it was correct or not.
-
-### Use Case Example
-1. The user performs a **GET** request to retrieve an audio file.
-2. Listens to the audio and writes down the associated phrase.
-3. Submits the written response via a **POST** request and receives feedback on its correctness.
+This project offers an API to help users improve their **listening comprehension skills** in English. Users listen to audio files linked with specific sentences and submit text responses that are verified for accuracy.
 
 ---
 
-## Project Requirements
+## Features
 
-Ensure you have the following dependencies installed:
+- **Retrieve Sentences with Audio**: Access phrases along with their corresponding audio files for dictation exercises.
+- **Automated Feedback**: Submit text responses to the API and receive feedback on whether the input matches the original phrase.
+- **Difficulty Levels & Tags**: Phrases are categorized into difficulty levels (`básico`, `intermedio`, `avanzado`) and associated with specific tags for filtering or other contextual uses.
 
-- Python 3.13 or higher
-- Flask
-- [Any other dependencies listed in `requirements.txt`]
+---
 
-Install the dependencies with:
+## Endpoints Overview
 
-```shell script
-pip install -r requirements.txt
-```
+### **Phrase Management** (`/frases`)
+1. `GET /frases/`: Retrieve a list of all available phrases from the system.
+2. `GET /frases/random`: Get a random phrase, including its text, audio, and details.
+3. `GET /frases/recargar`: Reload phrases from the JSON file located in the project.
+4. `POST /frases/verificar`: Submit a text to verify against the original phrase.
+
+### **Audio Retrieval** (`/audio`)
+- `GET /audio/<filename>`: Retrieves the specified audio file from the static directory.
+
+### **Response Validation** (`/respuesta`)
+- `POST /respuesta`: Submit a user's response to a dictated sentence and receive validation feedback.
+
+---
+
+## Example Workflow
+1. The user queries `/frases/random` to get a random phrase and its audio file.
+2. After listening to the file, the user transcribes the sentence.
+3. The text is submitted to `/frases/verificar` for evaluation or to `/respuesta` to evaluate whether it matches.
 
 ---
 
 ## Project Structure
 
-```
-/mi_proyecto
-│
-├── app/                    # Main application directory
-│   ├── __init__.py         # Initializes the Flask app
-│   ├── routes/             # API routes (endpoints)
+```plaintext
+project/
+├── app/                     # Main application code
+│   ├── __init__.py          # App initialization
+│   ├── routes/              # Routes namespace
+│   │   ├── AudioEndpointsNamespace.py
+│   │   ├── FrasesEndpointsNamespace.py
+│   │   └── SubmitUserResponse.py
+│   ├── services/            # Business logic layer
+│   │   └── procesador.py    # Sentence processor for evaluation and JSON handling
+│   ├── models/              # Data models
 │   │   ├── __init__.py
-│   │   └── frases.py       # Endpoints for handling phrases and audio
-│   ├── services/           # Business logic (process texts, comparisons)
-│   │   ├── __init__.py
-│   │   └── procesador.py   # Methods to evaluate responses to dictation
-│   ├── models/             # Data models
-│   │   ├── __init__.py
-│   │   └── frase.py        # Model for handling phrases and their properties
-│   ├── static/             # Static files (audio)
-│   │   └── audios/         # Audio files used for the exercises
-│   └── templates/          # HTML templates (optional, if rendering with Jinja2)
-│       └── index.html
-│
-├── tests/                  # Project tests
-│   └── test_frases.py      # Tests for endpoints and logic
-│
-├── requirements.txt        # Project dependencies
-├── config.py               # Configuration (paths, environment variables)
-└── run.py                  # Main file to run the app
+│   │   └── frase.py         # Frase class model
+│   └── static/              # Static resources (e.g., audio files)
+│       ├── audios/          # Directory containing audio files
+│       └── frases_json/     # JSON file with phrase details
+├── tests/                   # Unit tests
+│   └── test_frases.py
+├── config.py                # Project configurations (paths, environment variables)
+├── requirements.txt         # Python dependencies
+├── README.md                # Documentation (this file)
+├── run.py                   # Entry point to run the application
+└── AppLauncher.py           # Alternate app launcher
 ```
 
 ---
 
-## API Endpoints
+## Local Setup
 
-### **GET /audio**
-- **Description**: Returns an audio file associated with a sentence.
-- **Response**:
-```json
-{
-      "audio_url": "https://example.com/audio/audio1.mp3",
-      "frase_id": 1
-  }
-```
+### Prerequisites
+Make sure your environment has the following:
+- **Python** 3.13+
+- **Flask** and additional required dependencies.
 
-### **POST /respuesta**
-- **Description**: Submits the written response for the dictation and receives an evaluation.
-- **Request Body**:
-```json
-{
-      "frase_id": 1,
-      "respuesta": "Text submitted by the user"
-  }
-```
-- **Response**:
-```json
-{
-      "correcto": true,
-      "mensaje": "Correct answer!"
-  }
-```
-
----
-
-## How to Run the Project
-
-1. Make sure to install the dependencies:
-```shell script
+Install dependencies with:
+```bash
 pip install -r requirements.txt
 ```
 
-2. Run the application:
-```shell script
+### Running the App
+Start the application locally:
+```bash
 python run.py
 ```
 
-3. Access the API at: `http://127.0.0.1:5000`
+Access the API at: [http://127.0.0.1:5000](http://127.0.0.1:5000/)
 
 ---
 
-## Tests
+## Example Requests
 
-To ensure everything works correctly, run the included project tests:
+### **Retrieve Random Phrase**
+- **Request**:
+  ```bash
+  GET /frases/random
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 3,
+    "texto": "What would you say is your greatest strength?",
+    "audio": "03.mp3",
+    "nivel": "intermedio",
+    "tags": ["strength", "habilidades"]
+  }
+  ```
 
-```shell script
+### **Verify User's Transcription**
+- **Request**:
+  ```bash
+  POST /frases/verificar
+  Content-Type: application/json
+
+  {
+      "id": 3,
+      "texto": "What would you say is your greatest strength?"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "error": false,
+      "mensaje": "Verificación completada",
+      "detalles": [
+          {"palabra": "What", "correcta": true},
+          {"palabra": "would", "correcta": true},
+          {"palabra": "you", "correcta": true},
+          {"palabra": "say", "correcta": true},
+          {"palabra": "is", "correcta": true},
+          {"palabra": "your", "correcta": true},
+          {"palabra": "greatest", "correcta": true},
+          {"palabra": "strength?", "correcta": true}
+      ],
+      "texto_original": "What would you say is your greatest strength?",
+      "texto_usuario": "What would you say is your greatest strength?"
+  }
+  ```
+
+---
+
+## Testing
+Run tests to verify functionality:
+```bash
 python -m unittest discover tests
 ```
 
 ---
 
-## Future Plans
+## JSON Loading
+The application uses a local JSON file (`frases.json`) to load the phrases and their associated metadata. Make sure to update the JSON file if new phrases or corrections are needed.
 
-- Integrate AI-based logic to evaluate written responses more flexibly.
-- Expand the API with additional endpoints.
-- Use a database for managing phrases and users.
+### Sample JSON Structure
+```json
+[
+  {
+    "id": 1,
+    "texto": "Can you tell me about yourself and your professional background?",
+    "audio": "01.mp3",
+    "nivel": "intermedio",
+    "tags": ["My speech", "introducción"]
+  },
+  {
+    "id": 2,
+    "texto": "What were your responsibilities?",
+    "audio": "02.mp3",
+    "nivel": "intermedio",
+    "tags": ["Responsibilities", "experiencia"]
+  }
+]
+```
 
 ---
+
+## Future Improvements
+
+- Enhance text verification to be more context-aware using NLP techniques.
+- Add user tracking and profiles to save progress during the exercises.
+- Implement advanced logging for better debugging in production environments.
+- Migrate to a database for dynamic management of phrases and metadata.
+
+---
+
+## Authors
+This project was designed to support English learners through improved listening practice and interactive feedback.
+

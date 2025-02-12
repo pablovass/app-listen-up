@@ -42,9 +42,38 @@ class ProcesadorFrases:
         frase = random.choice(self.frases)
         return frase.to_dict()
 
-    def verificar_frase(self, texto_usuario):
-        """Verifica si la frase del usuario coincide con alguna de las originales"""
-        for frase in self.frases:
-            if frase.texto.lower() == texto_usuario.lower():
-                return {"correcto": True, "mensaje": "¡Correcto!"}
-        return {"correcto": False, "mensaje": "Respuesta incorrecta"}
+    def verificar_frase(self, frase_id, texto_usuario):
+        """Verifica si la frase del usuario coincide con la frase del JSON"""
+        # Buscar la frase por ID
+        frase_obj = next((f for f in self.frases if f.id == frase_id), None)
+        if not frase_obj:
+            return {"error": True, "mensaje": "ID de frase no encontrado"}
+
+        # Divide ambas frases en listas de palabras
+        palabras_originales = frase_obj.texto.lower().split()
+        palabras_usuario = texto_usuario.lower().split()
+
+        # Compara palabra por palabra
+        resultado = []
+        for original, usuario in zip(palabras_originales, palabras_usuario):
+            resultado.append({
+                "palabra": original,
+                "correcta": original == usuario
+            })
+
+        # Identificar palabras faltantes o sobrantes
+        if len(palabras_usuario) < len(palabras_originales):
+            for original in palabras_originales[len(palabras_usuario):]:
+                resultado.append({"palabra": original, "correcta": False, "mensaje": "Palabra no mencionada"})
+        elif len(palabras_usuario) > len(palabras_originales):
+            for usuario in palabras_usuario[len(palabras_originales):]:
+                resultado.append({"palabra": usuario, "correcta": False, "mensaje": "Palabra no esperada"})
+
+        # Retornar el resultado detallado
+        return {
+            "error": False,
+            "mensaje": "Verificación completada",
+            "detalles": resultado,
+            "texto_original": frase_obj.texto,
+            "texto_usuario": texto_usuario
+        }
