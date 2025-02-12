@@ -48,4 +48,4 @@ models/
 .ipynb_checkpoints/
 
 # Audio files
-app/static/audios/
+#app/static/audios/
